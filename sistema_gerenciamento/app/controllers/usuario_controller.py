@@ -10,11 +10,11 @@ from models.usuario_model import (
     update_usuario
 )
 from models.database import get_db
+from models.log_model import registrar_log
 import mysql.connector
 from typing import Optional
 import logging
 
-# Configuração básica de logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -76,13 +76,22 @@ async def cadastrar_usuario(
         if not usuario_id:
             raise ValueError("Não foi possível criar o usuário")
         
+        registrar_log(
+            tipo_operacao="CREATE",
+            tabela_afetada="usuarios",
+            id_registro=usuario_id,
+            dados_novos=usuario_data.dict(),
+            request=request,
+            db=db
+        )
+        
         set_flash(request, "Usuário cadastrado com sucesso!")
         return RedirectResponse(
             url=router.url_path_for("listar_usuarios"),
             status_code=status.HTTP_303_SEE_OTHER
         )
     except mysql.connector.Error as e:
-        if e.errno == 1062:  # MySQL duplicate entry error
+        if e.errno == 1062: 
             error_msg = "Este e-mail já está cadastrado"
         else:
             error_msg = f"Erro no banco de dados: {str(e)}"
@@ -163,6 +172,8 @@ async def processar_edicao_usuario(
 ):
     """Processa o formulário de edição de usuário."""
     try:
+        usuario_atual = get_usuario_by_id(id, db)
+        
         update_data = {"nome": nome, "email": email}
         if senha and senha.strip():
             update_data["senha"] = senha
@@ -171,13 +182,26 @@ async def processar_edicao_usuario(
         if rows_updated == 0:
             raise ValueError("Nenhum usuário foi atualizado")
         
+        registrar_log(
+            tipo_operacao="UPDATE",
+            tabela_afetada="usuarios",
+            id_registro=id,
+            dados_anteriores={
+                "nome": usuario_atual["nome"],
+                "email": usuario_atual["email"]
+            },
+            dados_novos=update_data,
+            request=request,
+            db=db
+        )
+        
         set_flash(request, "Usuário atualizado com sucesso!")
         return RedirectResponse(
             url=router.url_path_for("obter_usuario", id=id),
             status_code=status.HTTP_303_SEE_OTHER
         )
     except mysql.connector.Error as e:
-        if e.errno == 1062:  # MySQL duplicate entry error
+        if e.errno == 1062: 
             error_msg = "Este e-mail já está cadastrado"
         else:
             error_msg = f"Erro no banco de dados: {str(e)}"
@@ -211,9 +235,23 @@ async def deletar_usuario(
 ):
     """Remove um usuário do sistema."""
     try:
+        usuario = get_usuario_by_id(id, db)
+        
         affected_rows = delete_usuario(id, db)
         if affected_rows == 0:
             raise HTTPException(status_code=404, detail="Usuário não encontrado")
+        
+        registrar_log(
+            tipo_operacao="DELETE",
+            tabela_afetada="usuarios",
+            id_registro=id,
+            dados_anteriores={
+                "nome": usuario["nome"],
+                "email": usuario["email"]
+            },
+            request=request,
+            db=db
+        )
         
         set_flash(request, "Usuário excluído com sucesso!")
         return RedirectResponse(
