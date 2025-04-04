@@ -1,31 +1,22 @@
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel
 from models.database import get_db
 import mysql.connector
 from passlib.context import CryptContext
-from typing import Optional
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class UsuarioBase(BaseModel):
-    nome: str = Field(..., min_length=3, max_length=100)
-    email: str = Field(..., regex=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")
+    nome: str
+    email: str
 
 class UsuarioCreate(UsuarioBase):
-    senha: str = Field(..., min_length=6)
+    senha: str
 
     def hash_password(self):
         self.senha = pwd_context.hash(self.senha)
 
 class Usuario(UsuarioBase):
     id: int
-
-def get_usuario_by_email(email: str, db: mysql.connector.MySQLConnection):
-    try:
-        cursor = db.cursor(dictionary=True)
-        cursor.execute("SELECT id, nome, email FROM usuarios WHERE email = %s", (email,))
-        return cursor.fetchone()
-    except mysql.connector.Error as err:
-        raise ValueError(f"Erro ao buscar usuário por email: {err.msg}")
 
 def create_usuario(usuario: UsuarioCreate, db: mysql.connector.MySQLConnection):
     try:
@@ -47,7 +38,7 @@ def get_usuario_by_id(id: int, db: mysql.connector.MySQLConnection):
         cursor.execute("SELECT id, nome, email FROM usuarios WHERE id = %s", (id,))
         return cursor.fetchone()
     except mysql.connector.Error as err:
-        raise ValueError(f"Erro ao buscar usuário por ID: {err.msg}")
+        raise ValueError(f"Erro ao buscar usuário: {err.msg}")
 
 def get_all_usuarios(db: mysql.connector.MySQLConnection):
     try:
@@ -68,8 +59,10 @@ def update_usuario(id: int, update_data: dict, db: mysql.connector.MySQLConnecti
         values = list(update_data.values())
         values.append(id)
         
-        query = f"UPDATE usuarios SET {set_clause} WHERE id = %s"
-        cursor.execute(query, values)
+        cursor.execute(
+            f"UPDATE usuarios SET {set_clause} WHERE id = %s",
+            values
+        )
         db.commit()
         return cursor.rowcount
     except mysql.connector.Error as err:
