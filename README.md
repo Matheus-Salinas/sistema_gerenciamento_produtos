@@ -199,6 +199,1893 @@ Acesse em: http://127.0.0.1:8000
 - MySQL Connector Python  
 - Pydantic Validation  
 
+## Relatorio de Uso 
+
+## **Usuarios**
+
+### ▶ Listar Usuarios (GET)
+`ENDPOINT:` `/produtos`
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Usuários</h2>
+        <a href="http://127.0.0.1:8000/usuarios/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Usuário
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th class="table-actions">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>6</td>
+                    <td>Davi Bernardes</td>
+                    <td>daviteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/6" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/6/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/6/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>David</td>
+                    <td>davidteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/10/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Matheus Salinas Zancope</td>
+                    <td>matheusteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/5/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>11</td>
+                    <td>Wellingthon</td>
+                    <td>weweteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/11" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/11/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/11/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Cadastrar Usuarios (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Usuários</h2>
+        <a href="http://127.0.0.1:8000/usuarios/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Usuário
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th class="table-actions">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>12</td>
+                    <td>Carlos Lionel</td>
+                    <td>carlosteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/12" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/12/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/12/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>6</td>
+                    <td>Davi Bernardes</td>
+                    <td>daviteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/6" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/6/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/6/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>David</td>
+                    <td>davidteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/10/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Matheus Salinas Zancope</td>
+                    <td>matheusteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/5/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>11</td>
+                    <td>Wellingthon</td>
+                    <td>weweteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/11" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/11/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/11/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Obter Usuario (GET)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container mt-4">
+    <h2 class="mb-4">Detalhes do Usuário</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">Carlos Lionel</h5>
+                    <div class="card-text">
+                        <p><strong>ID:</strong> 12</p>
+                        <p><strong>Email:</strong> carlosteste@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex gap-2 mt-4">
+                <a href="http://127.0.0.1:8000/usuarios/12/editar" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                
+                <form method="POST" action="http://127.0.0.1:8000/usuarios/12/deletar" class="d-inline">
+                    <button type="submit" class="btn btn-danger" 
+                            onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+                
+                <a href="http://127.0.0.1:8000/usuarios/" class="btn btn-secondary ms-auto">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Editar Usuario (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container mt-4">
+    <h2 class="mb-4">Detalhes do Usuário</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="card-title">carlos</h5>
+                    <div class="card-text">
+                        <p><strong>ID:</strong> 12</p>
+                        <p><strong>Email:</strong> caloreditado@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex gap-2 mt-4">
+                <a href="http://127.0.0.1:8000/usuarios/12/editar" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                
+                <form method="POST" action="http://127.0.0.1:8000/usuarios/12/deletar" class="d-inline">
+                    <button type="submit" class="btn btn-danger" 
+                            onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+                
+                <a href="http://127.0.0.1:8000/usuarios/" class="btn btn-secondary ms-auto">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+
+### ▶ Deletar Usuario (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Usuários</h2>
+        <a href="http://127.0.0.1:8000/usuarios/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Usuário
+        </a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th class="table-actions">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>6</td>
+                    <td>Davi Bernardes</td>
+                    <td>daviteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/6" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/6/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/6/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>David</td>
+                    <td>davidteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/10/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Matheus Salinas Zancope</td>
+                    <td>matheusteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/5/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>11</td>
+                    <td>Wellingthon</td>
+                    <td>weweteste@gmail.com</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/usuarios/11" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/usuarios/11/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form action="http://127.0.0.1:8000/usuarios/11/deletar" 
+                                  method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+## **Produto**
+
+### ▶ Listar Produto (GET)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Produtos</h2>
+        <a href="http://127.0.0.1:8000/produtos/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Produto
+        </a>
+    </div>
+
+    
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>4</td>
+                    <td>Tênis Nike</td>
+                    <td>R$ 300.00</td>
+                    <td>2</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/4" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/4/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/4/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Jaqueta</td>
+                    <td>R$ 250.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/5/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>7</td>
+                    <td>Oculos Marrom</td>
+                    <td>R$ 180.00</td>
+                    <td>5</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/7" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/7/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/7/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>8</td>
+                    <td>Jaqueta G</td>
+                    <td>R$ 234.00</td>
+                    <td>12</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/8" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/8/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/8/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>Amendoim</td>
+                    <td>R$ 123.00</td>
+                    <td>1</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/10/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>13</td>
+                    <td>Lápis</td>
+                    <td>R$ 10.00</td>
+                    <td>30</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/13" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/13/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/13/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>14</td>
+                    <td>Cama de cachorro</td>
+                    <td>R$ 12.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/14" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/14/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/14/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Cadastrar Produto (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Produtos</h2>
+        <a href="http://127.0.0.1:8000/produtos/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Produto
+        </a>
+    </div>
+
+    
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>4</td>
+                    <td>Tênis Nike</td>
+                    <td>R$ 300.00</td>
+                    <td>2</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/4" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/4/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/4/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Jaqueta</td>
+                    <td>R$ 250.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/5/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>7</td>
+                    <td>Oculos Marrom</td>
+                    <td>R$ 180.00</td>
+                    <td>5</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/7" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/7/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/7/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>8</td>
+                    <td>Jaqueta G</td>
+                    <td>R$ 234.00</td>
+                    <td>12</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/8" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/8/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/8/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>Amendoim</td>
+                    <td>R$ 123.00</td>
+                    <td>1</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/10/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>13</td>
+                    <td>Lápis</td>
+                    <td>R$ 10.00</td>
+                    <td>30</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/13" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/13/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/13/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>14</td>
+                    <td>Cama de cachorro</td>
+                    <td>R$ 12.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/14" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/14/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/14/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>15</td>
+                    <td>Camiseta Caveira</td>
+                    <td>R$ 80.00</td>
+                    <td>4</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/15" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/15/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/15/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Obter Produto (GET)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container mt-4">
+    <h2 class="mb-4">Detalhes do Produto</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Camiseta Caveira</h5>
+            <div class="card-text">
+                <p><strong>ID:</strong> 15</p>
+                <p><strong>Descrição:</strong> camiseta preta</p>
+                <p><strong>Preço:</strong> R$ 80.00</p>
+                <p><strong>Estoque:</strong> 4 unidades</p>
+            </div>
+            
+            <div class="d-flex gap-2 mt-4">
+                <a href="http://127.0.0.1:8000/produtos/15/editar" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                
+                <form method="POST" action="http://127.0.0.1:8000/produtos/15/deletar" class="d-inline">
+                    <button type="submit" class="btn btn-danger" 
+                            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+                
+                <a href="http://127.0.0.1:8000/produtos/" class="btn btn-secondary ms-auto">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+### ▶ Editar Produto (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container mt-4">
+    <h2 class="mb-4">Detalhes do Produto</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Camiseta de gatinho</h5>
+            <div class="card-text">
+                <p><strong>ID:</strong> 15</p>
+                <p><strong>Descrição:</strong> Nenhuma descrição</p>
+                <p><strong>Preço:</strong> R$ 19.00</p>
+                <p><strong>Estoque:</strong> 2 unidades</p>
+            </div>
+            
+            <div class="d-flex gap-2 mt-4">
+                <a href="http://127.0.0.1:8000/produtos/15/editar" class="btn btn-warning">
+                    <i class="bi bi-pencil"></i> Editar
+                </a>
+                
+                <form method="POST" action="http://127.0.0.1:8000/produtos/15/deletar" class="d-inline">
+                    <button type="submit" class="btn btn-danger" 
+                            onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+                
+                <a href="http://127.0.0.1:8000/produtos/" class="btn btn-secondary ms-auto">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+
+### ▶ Deletar Produto (POST)
+
+**Exemplo de resposta:**
+``` bash
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gerenciamento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        .invalid-feedback { display: block; }
+        .table-actions { white-space: nowrap; width: 1%; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-box-seam"></i> Sistema de Gerenciamento
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos/">
+                        <i class="bi bi-box-seam"></i> Produtos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuarios/">
+                        <i class="bi bi-people"></i> Usuários
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+
+        
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Lista de Produtos</h2>
+        <a href="http://127.0.0.1:8000/produtos/cadastrar" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Cadastrar Produto
+        </a>
+    </div>
+
+    
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Estoque</th>
+                    <th class="text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>4</td>
+                    <td>Tênis Nike</td>
+                    <td>R$ 300.00</td>
+                    <td>2</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/4" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/4/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/4/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>5</td>
+                    <td>Jaqueta</td>
+                    <td>R$ 250.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/5" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/5/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/5/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>7</td>
+                    <td>Oculos Marrom</td>
+                    <td>R$ 180.00</td>
+                    <td>5</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/7" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/7/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/7/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>8</td>
+                    <td>Jaqueta G</td>
+                    <td>R$ 234.00</td>
+                    <td>12</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/8" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/8/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/8/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>10</td>
+                    <td>Amendoim</td>
+                    <td>R$ 123.00</td>
+                    <td>1</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/10" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/10/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/10/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>13</td>
+                    <td>Lápis</td>
+                    <td>R$ 10.00</td>
+                    <td>30</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/13" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/13/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/13/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>14</td>
+                    <td>Cama de cachorro</td>
+                    <td>R$ 12.00</td>
+                    <td>3</td>
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            <a href="http://127.0.0.1:8000/produtos/14" 
+                               class="btn btn-info" title="Visualizar">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            <a href="http://127.0.0.1:8000/produtos/14/editar" 
+                               class="btn btn-warning" title="Editar">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <form method="POST" action="http://127.0.0.1:8000/produtos/14/deletar" 
+                                  class="d-inline">
+                                <button type="submit" class="btn btn-danger" 
+                                        title="Excluir"
+                                        onclick="return confirm('Tem certeza que deseja excluir este produto?')">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Ativar validação de formulários
+        (function() {
+            'use strict'
+            const forms = document.querySelectorAll('.needs-validation')
+            
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+</body>
+</html>
+```
+
 ## Autores
 
 Desenvolvido por Davi Machado e Matheus Salinas, estudantes de Desenvolvimento de Software Multiplataforma na FATEC Itaquera.
