@@ -1,7 +1,7 @@
 import logging
 import mysql.connector
 from typing import Optional
-from fastapi import APIRouter, Depends, HTTPException, Form, Request, status
+from fastapi import Depends, HTTPException, Form, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from models.database import get_db
@@ -15,10 +15,11 @@ from models.usuario_model import (
     update_usuario
 )
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/usuarios", tags=["usuarios"])
+
 templates = Jinja2Templates(directory="templates")
 
 def set_flash(request: Request, message: str, category: str = "success"):
@@ -34,9 +35,18 @@ def get_flash(request: Request):
         return flash
     return None
 
-@router.get("/", response_class=HTMLResponse, name="listar_usuarios")
+
 async def listar_usuarios(request: Request, db: mysql.connector.MySQLConnection = Depends(get_db)):
-    """Lista todos os usuários."""
+    """
+    Lista todos os usuários cadastrados no sistema.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza a página de listagem de usuários
+    """
     try:
         usuarios = get_all_usuarios(db)
         flash = get_flash(request)
@@ -52,15 +62,21 @@ async def listar_usuarios(request: Request, db: mysql.connector.MySQLConnection 
             {"request": request, "usuarios": [], "messages": [{"message": "Erro ao carregar usuários", "category": "danger"}]}
         )
 
-@router.get("/cadastrar", response_class=HTMLResponse, name="form_cadastrar_usuario")
 async def form_cadastrar_usuario(request: Request):
-    """Exibe o formulário de cadastro de usuário."""
+    """
+    Exibe o formulário de cadastro de novo usuário.
+    
+    Args:
+        request: Objeto Request do FastAPI
+    
+    Returns:
+        TemplateResponse: Renderiza o formulário de cadastro
+    """
     return templates.TemplateResponse(
         "usuarios/cadastro.html",
         {"request": request, "errors": [], "form_data": {}}
     )
 
-@router.post("/cadastrar", response_class=HTMLResponse, name="cadastrar_usuario")
 async def cadastrar_usuario(
     request: Request,
     nome: str = Form(..., min_length=3, max_length=50),
@@ -68,13 +84,27 @@ async def cadastrar_usuario(
     senha: str = Form(..., min_length=6),
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
-    """Processa o formulário de cadastro de usuário."""
+    """
+    Processa o formulário de cadastro de novo usuário.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        nome: Nome completo do usuário
+        email: E-mail do usuário
+        senha: Senha do usuário
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para a lista de usuários após cadastro bem-sucedido
+        TemplateResponse: Retorna ao formulário com erros se houver problemas
+    """
     try:
         usuario_data = UsuarioCreate(nome=nome, email=email, senha=senha)
         usuario_id = create_usuario(usuario_data, db)
         
         if not usuario_id:
             raise ValueError("Não foi possível criar o usuário")
+        
         
         registrar_log(
             tipo_operacao="CREATE",
@@ -87,11 +117,11 @@ async def cadastrar_usuario(
         
         set_flash(request, "Usuário cadastrado com sucesso!")
         return RedirectResponse(
-            url=router.url_path_for("listar_usuarios"),
+            url="/usuarios",
             status_code=status.HTTP_303_SEE_OTHER
         )
     except mysql.connector.Error as e:
-        if e.errno == 1062: 
+        if e.errno == 1062:  
             error_msg = "Este e-mail já está cadastrado"
         else:
             error_msg = f"Erro no banco de dados: {str(e)}"
@@ -115,13 +145,22 @@ async def cadastrar_usuario(
             }
         )
 
-@router.get("/{id}", response_class=HTMLResponse, name="obter_usuario")
 async def obter_usuario(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
-    """Exibe os detalhes de um usuário específico."""
+    """
+    Exibe os detalhes de um usuário específico.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do usuário
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza a página de detalhes do usuário
+    """
     try:
         usuario = get_usuario_by_id(id, db)
         if not usuario:
@@ -138,13 +177,22 @@ async def obter_usuario(
             detail="Erro ao carregar usuário"
         )
 
-@router.get("/{id}/editar", response_class=HTMLResponse, name="form_editar_usuario")
 async def form_editar_usuario(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
-    """Exibe o formulário de edição de usuário."""
+    """
+    Exibe o formulário de edição de usuário.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do usuário a ser editado
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza o formulário de edição
+    """
     try:
         usuario = get_usuario_by_id(id, db)
         if not usuario:
@@ -161,7 +209,6 @@ async def form_editar_usuario(
             detail="Erro ao carregar formulário de edição"
         )
 
-@router.post("/{id}/editar", response_class=HTMLResponse, name="processar_edicao_usuario")
 async def processar_edicao_usuario(
     request: Request,
     id: int,
@@ -170,7 +217,21 @@ async def processar_edicao_usuario(
     senha: Optional[str] = Form(None, min_length=6),
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
-    """Processa o formulário de edição de usuário."""
+    """
+    Processa o formulário de edição de usuário.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do usuário a ser editado
+        nome: Novo nome do usuário
+        email: Novo e-mail do usuário
+        senha: Nova senha (opcional)
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para os detalhes do usuário após edição bem-sucedida
+        TemplateResponse: Retorna ao formulário com erros se houver problemas
+    """
     try:
         usuario_atual = get_usuario_by_id(id, db)
         
@@ -181,6 +242,7 @@ async def processar_edicao_usuario(
         rows_updated = update_usuario(id, update_data, db)
         if rows_updated == 0:
             raise ValueError("Nenhum usuário foi atualizado")
+        
         
         registrar_log(
             tipo_operacao="UPDATE",
@@ -197,11 +259,11 @@ async def processar_edicao_usuario(
         
         set_flash(request, "Usuário atualizado com sucesso!")
         return RedirectResponse(
-            url=router.url_path_for("obter_usuario", id=id),
+            url=f"/usuarios/{id}",
             status_code=status.HTTP_303_SEE_OTHER
         )
     except mysql.connector.Error as e:
-        if e.errno == 1062: 
+        if e.errno == 1062:  
             error_msg = "Este e-mail já está cadastrado"
         else:
             error_msg = f"Erro no banco de dados: {str(e)}"
@@ -227,19 +289,29 @@ async def processar_edicao_usuario(
             }
         )
 
-@router.post("/{id}/deletar", name="deletar_usuario")
 async def deletar_usuario(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
-    """Remove um usuário do sistema."""
+    """
+    Remove um usuário do sistema.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do usuário a ser removido
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para a lista de usuários após remoção bem-sucedida
+    """
     try:
         usuario = get_usuario_by_id(id, db)
         
         affected_rows = delete_usuario(id, db)
         if affected_rows == 0:
             raise HTTPException(status_code=404, detail="Usuário não encontrado")
+        
         
         registrar_log(
             tipo_operacao="DELETE",
@@ -255,7 +327,7 @@ async def deletar_usuario(
         
         set_flash(request, "Usuário excluído com sucesso!")
         return RedirectResponse(
-            url=router.url_path_for("listar_usuarios"),
+            url="/usuarios",
             status_code=status.HTTP_303_SEE_OTHER
         )
     except Exception as e:

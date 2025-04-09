@@ -1,31 +1,52 @@
-from fastapi import APIRouter, Depends, HTTPException, Form, Request, status
+from fastapi import Depends, HTTPException, Form, Request, status
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from models.produto_model import ProdutoCreate, get_all_produtos, get_produto_by_id, create_produto, update_produto, delete_produto
+from models.produto_model import (
+    ProdutoCreate,
+    get_all_produtos,
+    get_produto_by_id,
+    create_produto,
+    update_produto,
+    delete_produto
+)
 from models.database import get_db
 from models.log_model import registrar_log
 import mysql.connector
 import logging
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/produtos", tags=["produtos"])
+
 templates = Jinja2Templates(directory="templates")
 
+
 def set_flash(request: Request, message: str, category: str = "success"):
+    """Define uma mensagem flash na sessão."""
     if not hasattr(request.state, 'session'):
         request.state.session = {}
     request.state.session['flash'] = {'message': message, 'category': category}
 
 def get_flash(request: Request):
+    """Obtém e remove a mensagem flash da sessão."""
     if hasattr(request.state, 'session') and 'flash' in request.state.session:
         flash = request.state.session.pop('flash')
         return flash
     return None
 
-@router.get("/", response_class=HTMLResponse, name="listar_produtos")
+
 async def listar_produtos(request: Request, db: mysql.connector.MySQLConnection = Depends(get_db)):
+    """
+    Lista todos os produtos disponíveis.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza a página de listagem de produtos
+    """
     try:
         produtos = get_all_produtos(db)
         flash = get_flash(request)
@@ -41,14 +62,21 @@ async def listar_produtos(request: Request, db: mysql.connector.MySQLConnection 
             {"request": request, "produtos": [], "messages": [{"message": "Erro ao carregar produtos", "category": "danger"}]}
         )
 
-@router.get("/cadastrar", response_class=HTMLResponse, name="produto_cadastrar")
 async def form_cadastrar_produto(request: Request):
+    """
+    Exibe o formulário de cadastro de novo produto.
+    
+    Args:
+        request: Objeto Request do FastAPI
+    
+    Returns:
+        TemplateResponse: Renderiza o formulário de cadastro
+    """
     return templates.TemplateResponse(
         "produtos/cadastro.html",
         {"request": request, "errors": [], "form_data": {}}
     )
 
-@router.post("/cadastrar", response_class=HTMLResponse, name="produto_cadastrar_post")
 async def cadastrar_produto(
     request: Request,
     nome: str = Form(...),
@@ -57,6 +85,21 @@ async def cadastrar_produto(
     estoque: int = Form(...),
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
+    """
+    Processa o formulário de cadastro de novo produto.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        nome: Nome do produto
+        descricao: Descrição do produto
+        preco: Preço do produto
+        estoque: Quantidade em estoque
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para a lista de produtos após cadastro bem-sucedido
+        TemplateResponse: Retorna ao formulário com erros se houver problemas
+    """
     errors = []
     
     if len(nome.strip()) < 3:
@@ -81,33 +124,61 @@ async def cadastrar_produto(
             }
         )
 
-    produto_data = ProdutoCreate(nome=nome, descricao=descricao, preco=preco, estoque=estoque)
-    produto_id = create_produto(produto_data, db)
+    try:
+        produto_data = ProdutoCreate(nome=nome, descricao=descricao, preco=preco, estoque=estoque)
+        produto_id = create_produto(produto_data, db)
 
-    if not produto_id:
-        raise ValueError("Não foi possível criar o produto")
-    
-    registrar_log(
-        tipo_operacao="CREATE",
-        tabela_afetada="produtos",
-        id_registro=produto_id,
-        dados_novos=produto_data.dict(),
-        request=request,
-        db=db
-    )
-    
-    set_flash(request, "Produto cadastrado com sucesso!")
-    return RedirectResponse(
-        url=router.url_path_for("listar_produtos"),
-        status_code=status.HTTP_303_SEE_OTHER
-    )
+        if not produto_id:
+            raise ValueError("Não foi possível criar o produto")
+        
+        
+        registrar_log(
+            tipo_operacao="CREATE",
+            tabela_afetada="produtos",
+            id_registro=produto_id,
+            dados_novos=produto_data.dict(),
+            request=request,
+            db=db
+        )
+        
+        set_flash(request, "Produto cadastrado com sucesso!")
+        return RedirectResponse(
+            url="/produtos",
+            status_code=status.HTTP_303_SEE_OTHER
+        )
+    except Exception as e:
+        logger.error(f"Erro ao cadastrar produto: {str(e)}", exc_info=True)
+        errors.append(f"Erro ao cadastrar produto: {str(e)}")
+        return templates.TemplateResponse(
+            "produtos/cadastro.html",
+            {
+                "request": request,
+                "errors": errors,
+                "form_data": {
+                    "nome": nome,
+                    "descricao": descricao,
+                    "preco": preco,
+                    "estoque": estoque
+                }
+            }
+        )
 
-@router.get("/{id}", response_class=HTMLResponse, name="produto_detalhes")
 async def obter_produto(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
+    """
+    Exibe os detalhes de um produto específico.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do produto
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza a página de detalhes do produto
+    """
     try:
         produto = get_produto_by_id(id, db)
         if not produto:
@@ -124,12 +195,22 @@ async def obter_produto(
             detail="Erro ao carregar produto"
         )
 
-@router.get("/{id}/editar", response_class=HTMLResponse, name="produto_editar")
 async def form_editar_produto(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
+    """
+    Exibe o formulário de edição de produto.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do produto a ser editado
+        db: Conexão com o banco de dados
+    
+    Returns:
+        TemplateResponse: Renderiza o formulário de edição
+    """
     try:
         produto = get_produto_by_id(id, db)
         if not produto:
@@ -146,7 +227,6 @@ async def form_editar_produto(
             detail="Erro ao carregar formulário de edição"
         )
 
-@router.post("/{id}/editar", response_class=HTMLResponse, name="produto_editar_post")
 async def processar_edicao_produto(
     request: Request,
     id: int,
@@ -156,9 +236,26 @@ async def processar_edicao_produto(
     estoque: int = Form(...),
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
+    """
+    Processa o formulário de edição de produto.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do produto a ser editado
+        nome: Novo nome do produto
+        descricao: Nova descrição do produto
+        preco: Novo preço do produto
+        estoque: Nova quantidade em estoque
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para os detalhes do produto após edição bem-sucedida
+        TemplateResponse: Retorna ao formulário com erros se houver problemas
+    """
     try:
         errors = []
         
+        # Validações
         if len(nome.strip()) < 3:
             errors.append("O nome do produto deve ter no mínimo 3 caracteres")
         if preco <= 0:
@@ -190,6 +287,7 @@ async def processar_edicao_produto(
         if rows_updated == 0:
             raise ValueError("Nenhum produto foi atualizado")
         
+       
         registrar_log(
             tipo_operacao="UPDATE",
             tabela_afetada="produtos",
@@ -207,7 +305,7 @@ async def processar_edicao_produto(
         
         set_flash(request, "Produto atualizado com sucesso!")
         return RedirectResponse(
-            url=router.url_path_for("produto_detalhes", id=id),
+            url=f"/produtos/{id}",
             status_code=status.HTTP_303_SEE_OTHER
         )
     except Exception as e:
@@ -222,18 +320,29 @@ async def processar_edicao_produto(
             }
         )
 
-@router.post("/{id}/deletar", name="produto_deletar")
 async def deletar_produto(
     request: Request,
     id: int,
     db: mysql.connector.MySQLConnection = Depends(get_db)
 ):
+    """
+    Remove um produto do sistema.
+    
+    Args:
+        request: Objeto Request do FastAPI
+        id: ID do produto a ser removido
+        db: Conexão com o banco de dados
+    
+    Returns:
+        RedirectResponse: Redireciona para a lista de produtos após remoção bem-sucedida
+    """
     try:
         produto = get_produto_by_id(id, db)
         
         affected_rows = delete_produto(id, db)
         if affected_rows == 0:
             raise HTTPException(status_code=404, detail="Produto não encontrado")
+        
         
         registrar_log(
             tipo_operacao="DELETE",
@@ -251,7 +360,7 @@ async def deletar_produto(
         
         set_flash(request, "Produto excluído com sucesso!")
         return RedirectResponse(
-            url=router.url_path_for("listar_produtos"),
+            url="/produtos",
             status_code=status.HTTP_303_SEE_OTHER
         )
     except Exception as e:
